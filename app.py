@@ -1,10 +1,11 @@
 from flask import Flask
-app = Flask(__name__)
+from flask.templating import render_template
 
+app = Flask(__name__, template_folder='templates')
 
 @app.route('/')
 def hello():
-    return "Welcome to the Rec Letter Checker. WiP come back soon."
+    return render_template('index.html')
 
 @app.route('/<name>')
 def hello_name(name):
