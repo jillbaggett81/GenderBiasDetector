@@ -21,11 +21,10 @@ class ProcessText():
         result = self.process_without_ML(data)
         return(result)
     def process_without_ML(self,data):
-        agentic_terms = []
+        agentic_terms = ['assertive','confident','aggressive','ambitious','dominan','forceful','independent','daring','outspoken','intellectua','earn','gain','know','insight','think']
         communal_terms = ['sympathetic','kind','help','affection','sensitive','nurtur','agreeab','tactful','interpersonal','warm','car','tactful']
-        socio_communal = []
-        #This splits the input text on white spaces
-        
+        socio_communal = ['husband','wife','kid','babies','brother','child','colleague','family']
+
         words_no_punc = data.translate(str.maketrans('', '', string.punctuation))
         words = data.split()
         agentic = 0
@@ -40,5 +39,5 @@ class ProcessText():
                     communal += 1
             for j in socio_communal:
                 if j in i.lower():
-                    socio_communal += 1
+                    socio_comm += 1
         return jsonify({"agentic":agentic, "communal":communal, "socio_communal":socio_comm})
