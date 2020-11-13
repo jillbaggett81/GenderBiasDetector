@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- Link to Bootstrap formattting -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<link rel="stylesheet" href="index_styles.css">
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -8,38 +13,25 @@
   <title> Welcome to the Letter of Recommendation Bias Indicator</title>
 </head>
 <body>
-<div class="header">
-  <h1>
-    Letter of Recommendation Bias Indicator
-  </h1>
+<div class="header jumbotron text-center" style="margin-bottom:0">
+  <h1>Letter of Recommendation Bias Indicator</h1>
+  <p>Our ML-powered gender bias detector will parse your letters of recommendation for indicators of bias and offer useful insights on simple modifications you can make to improve your letter.</p> 
 </div>
-<div class="form-group">
+<div class="body">
+<h1 class="h3">
+		Start here:
+	</h1>
+<div id="textboxid" class="input-group input-group-lg">
+	
     <form action='/process_letter_text' method="POST">
-        <input type="text" id="letterText" name="letterText" placeholder="Paste letter text here">
-        <input type="submit" id="submitButton">
+        <input type="text" id="letterText" name="letterText" placeholder="Paste your letter text.">
+        <div class="button">
+        <input type="submit" id="submitButton" class="btn btn-lg">
+    </div>
     </form>
   </div>
-<style>
-  .header
-  {
-    padding-left: 50px;
-  }
-  .form-group
-  {
-    width: 50%;
-    padding-left: 50px;
-    padding-top: 0px;
-  }
-  #letterText
-  {
-    width: 70%
-  }
-  .submit-button
-  {
-    padding-left: 50px;
-    padding-top:0px;
-  }
-</style>
+</div>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
