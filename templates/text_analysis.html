@@ -1,38 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<head>
-  <title> Letter of Recommendation Analysis</title>
-</head>
-<body>
-<div class="header">
-  <h1>
-    {{results.json}}
-  </h1>
-</div>
-<style>
-  .header
-  {
-    padding-left: 50px;
-  }
-  .form-group
-  {
-    width: 50%;
-    padding-left: 50px;
-    padding-top: 0px;
-  }
-  .submit-button
-  {
-    padding-left: 50px;
-    padding-top:0px;
-  }
-</style>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" 
+        content="width=device-width,  
+                 initial-scale=1,  
+                 shrink-to-fit=no"> 
+  <title> 
+    Text Analysis
+  </title> 
+  
+  <!-- Include Bootstrap for styling -->
+  <link rel="stylesheet" 
+        href= 
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+  
+  <!-- Include the Bootstrap Table 
+  CSS for the table -->
+  <link rel="stylesheet"
+        href= 
+"https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css"> 
+</head> 
+<body> 
+  <h1 class="text-header text-center"> 
+    Letters of Recommendation Text Analysis 
+  </h1> 
+  <h6 class="text-header text-center"> 
+    View the breakdown of your text below:
+  </h6> 
+  <div class="container"> 
+      <table class="table-striped border-success"> 
+        <thead> 
+          <tr> 
+            <th data-field="agentic"> 
+              <span class="text-header"> 
+                Agentic 
+              </span> 
+            </th> 
+            <th data-field="communal"> 
+              <span class="text-header"> 
+                Communal
+              </span> 
+            </th> 
+            <th data-field="socio_communal"> 
+              <span class="text-header"> 
+                Socio-Communal
+              </span> 
+            </th> 
+          </tr> 
+        </thead> 
+      </table> 
+  </div> 
+  <style>
+    .text-header
+    {
+      color:blue
+    }
+  </style>
+  <!-- Include jQuery and other required files for Bootstrap -->
+  <script src= 
+"https://code.jquery.com/jquery-3.3.1.min.js"> 
+  </script> 
+  <script src= 
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> 
+  </script> 
+  <script src= 
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> 
+  </script> 
+  
+  <!-- Include the JavaScript file for Bootstrap table -->
+  <script src= 
+"https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"> 
+  </script> 
+  
+  <!-- Include the file where the JSON data is stored -->
+  <script type="text/javascript" > 
+    var mydata = '[{{ results|tojson }}]';
+  </script> 
 
-
-</body>
+  <script type="text/javascript"> 
+    $(document).ready(function () { 
+      // Use the given data to create  
+      // the table and display it 
+      var mydata2 = JSON.parse(mydata);
+      $('table').bootstrapTable({ 
+        data: mydata2
+      }); 
+    }); 
+  
+    // Parse the imported data as JSON 
+    // and store it 
+  </script> 
+</body> 
 </html>

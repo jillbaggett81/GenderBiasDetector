@@ -9,6 +9,8 @@ import modules
 from modules.process_text import ProcessText
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask.json import jsonify
+import json
 
 #initialize the class to process text
 pc = ProcessText()
@@ -33,10 +35,10 @@ def processLetter():
 
     #Send the text to the processing module 
     result = pc.process_text(text)
-
+    print(result)
     #Return results of the processing module in a new page
     current_app.logger.info(result.json['communal'])
-    return render_template('text_analysis.html', results = result)
+    return render_template('text_analysis.html', results = result.json)
 
 #We can eventually have this represent the results of machine learning for different words.
 #This also could represent different ML models

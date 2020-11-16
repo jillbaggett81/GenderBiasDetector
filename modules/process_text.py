@@ -27,17 +27,17 @@ class ProcessText():
 
         words_no_punc = data.translate(str.maketrans('', '', string.punctuation))
         words = data.split()
-        agentic = 0
-        communal = 0
-        socio_comm = 0
+        agentic = []
+        communal = []
+        socio_comm = []
         for i in words:
             for j in agentic_terms:
                 if j in i.lower():
-                    agentic += 1
+                    agentic.append(i)
             for j in communal_terms:
                 if j in i.lower():
-                    communal += 1
+                    communal.append(i)
             for j in socio_communal:
                 if j in i.lower():
-                    socio_comm += 1
+                    socio_comm.append(i)
         return jsonify({"agentic":agentic, "communal":communal, "socio_communal":socio_comm})
