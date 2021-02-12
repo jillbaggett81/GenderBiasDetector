@@ -10,36 +10,41 @@
 <head>
   <title> Welcome to the Letter of Recommendation Bias Indicator</title>
 </head>
-<body>
 <div class="header jumbotron text-center" style="margin-bottom:0">
   <h1>Letter of Recommendation Bias Indicator</h1>
   <p>Our ML-powered gender bias detector will parse your letters of recommendation for indicators of bias and offer useful insights on simple modifications you can make to improve your letter.</p> 
 </div>
+<body>
+<div class="container">
+
 <div>
 <h1 class="h3">
 		Start here:
   </h1>
   <div>
     <form action='/process_letter_text' method="POST">
-      <input type="text" id="studentName" name="studentName" placeholder="Recommendee Name">
-      <input type="text" id="letterText" name="letterText" placeholder="Paste your letter text.">
-      <script type="text/javascript">
-        function anon()
-        {  doc_str = document.getElementById("letterText").value
-           student_name = document.getElementById("studentName").value
-           new_str = doc_str.replace(student_name, "ANON")
-           document.getElementById("letterText").value = new_str
-        }
+    	<div class="txtbox">
+      		<input type="text" id="letterText" name="letterText" placeholder="Paste your letter text.">
+  		</div class="txtbox">
+  		<input type="text" id="studentName" name="studentName" placeholder="Recommendee Name">
+      	<script type="text/javascript">
+	        function anon()
+	        {  doc_str = document.getElementById("letterText").value
+	           student_name = document.getElementById("studentName").value
+	           new_str = doc_str.replace(student_name, "ANON")
+	           document.getElementById("letterText").value = new_str
+	        }
         </script>
+
       <div class="button" class="btn btn-lg">
-      <input type="submit" name="action" value="submit">
+	      <!--<input name="action" value="anonymize" onclick = "anon();">-->
+	      <input type="submit" id="anon" name="action" value="Anonymize" onclick = "anon();">
+	      <input type="submit" id="submit" name="action" value="Submit">
       </div>
-      <div class="button" class="btn btn-lg">
-      <input name="action" value="anonymize" onclick = "anon();">
-      </div>
+      
   </form>
 </div>
-
+</div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

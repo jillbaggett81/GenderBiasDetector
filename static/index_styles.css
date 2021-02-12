@@ -2,10 +2,40 @@
 #DEE8D5
 #E9FAE3
 
+
 */
+
+/* HTML and Body Styles (structure)*/
 html, body {
-	background-color: #406E8E;
+	background-color: #eff7fa;
+	margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%x;
+    margin-bottom: 85px;
+
 }
+
+
+body {
+	background-color: #406E8E;
+	border-radius: 10px;
+	padding-bottom: 400px;
+}
+
+
+/* format media options */
+@media (min-width: 768px) {
+    body .container {
+        max-width: 70%;
+        margin: auto;
+    }
+    body .container  {
+        max-width: 70%;
+        margin: auto;
+    }
+}
+
+/* Specific Element Styles */
 
 p {
 
@@ -17,31 +47,14 @@ p {
 
 .header {
 	background-color: #8EA8C3;
-	padding-left: 50px;
 	padding-bottom: 30px;
 	border-bottom: 2px solid white;
+	border-radius: 10px;
+	max-width: 100%;
 
 }
 
-.body {
-	border-top: 2px solid white;
-	margin-top: 5px;
-	width: 100%;
-	background-color: #23395B;
-	height: 500px;
-}
-
-.form-group
-{
-width: 50%;
-padding-left: 50px;
-padding-top: 0px;
-}
-
-.input-group .input-group-lg {
-	width: 500px;
-
-}
+/* Formatting Input Box  */
 
 #textboxid
 {
@@ -55,15 +68,15 @@ padding-top: 0px;
 
 #letterText {
 	text-align: left;
-	padding: 0px 300px 200px 20px;
-	border-radius: 20px;
+	width: 100%;
+	padding: 5px 0px 30% 10px;
+	border-radius: 15px;
 	border: none;
 	background-color: white;
+	margin-bottom: 20px;
 }
 
-.btn .btn-lg {
-	color: #DEE8D5;
-}
+/* Formatting all form/input generalizations */
 
 form {
 	margin-top: 10px;
@@ -71,12 +84,25 @@ form {
 	justify-content: center;
 
 }
+
+input#studentName {
+	border-radius: 10px;
+	border-style: none;
+	padding: 2px 0px 2px 5px;
+}
+
 .button {
-	margin-top: 10px;
+	margin: 10px 0px 10px 0px;
+}
+
+input#anon, input#submit {
+	background-color: #eff7fa;
+	border-radius: 10px;
+	border-style: none;
+	margin: 10px 0px 10px 0px;
 }
 
 .h3 {
 	color: white;
 	padding-top: 10px;
-	padding-left: 20%;
 }
