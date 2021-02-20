@@ -7,6 +7,7 @@ from flask.templating import render_template
 import logging
 import modules
 from modules.process_text import ProcessText
+from modules.anonymizeText import anonText
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask.json import jsonify
@@ -14,6 +15,7 @@ import json
 
 #initialize the class to process text
 pc = ProcessText()
+at = anonText()
 
 app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db' # new
@@ -29,10 +31,16 @@ def homepage():
 
 @app.route('/process_letter_text', methods=["GET","POST"])
 def processLetter():
-
-    #Extract user text from the form
+    current_app.logger.info(request.form)
+    if "anonymize" in request.form.get("action"):
+            text = request.form.get("letterText")
+            student_name = request.form.get("studentName")
+            result = at.anonymize(text, student_name)
+            current_app.logger.info(result)
+            return result
+        
+       #Extract user text from the form
     text = request.form.get("letterText")
-
     #Send the text to the processing module 
     result = pc.process_text(text)
     print(result)
