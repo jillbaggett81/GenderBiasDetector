@@ -99,7 +99,6 @@ def processLetter():
     result = pc.process_text(text)
     print(result)
     #Return results of the processing module in a new page
-    current_app.logger.info(result.json['communal'])
 
     #Post this to the DB
 
