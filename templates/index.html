@@ -26,15 +26,30 @@
     	<div class="txtbox">
       		<input type="text" id="letterText" name="letterText" placeholder="Paste your letter text.">
   		</div class="txtbox">
-  		<input type="text" id="studentName" name="studentName" placeholder="Recommendee Name">
+		  <input type="text" id="studentName" name="studentName" placeholder="Recommendee Name">
+		  <div>
+			<h1 class="h3">
+				Select the gender of the recommendee.
+			  </h1>
+			  <div>
+		<input type="checkbox" id="male" name="male" value=1>
+		<label for="male"> Cisgender Male</label><br>
+		<input type="checkbox" id="female" name="female" value=0>
+		<label for="=female"> Non-male (female, transgender, non-binary)</label><br>
       	<script type="text/javascript">
 	        function anon()
 	        {  doc_str = document.getElementById("letterText").value
-	           student_name = document.getElementById("studentName").value
-	           new_str = doc_str.replace(student_name, "ANON")
-	           document.getElementById("letterText").value = new_str
+			   student_name = document.getElementById("studentName").value
+			   if (doc_str.includes(student_name) && student_name != '') {
+				while (doc_str.includes(student_name)) {
+				new_str = doc_str.replace(student_name, "ANON")
+				doc_str = new_str
+	            document.getElementById("letterText").value = new_str
+			   }
+			   }
 	        }
-        </script>
+		</script>
+
 
       <div class="button" class="btn btn-lg">
 	      <!--<input name="action" value="anonymize" onclick = "anon();">-->

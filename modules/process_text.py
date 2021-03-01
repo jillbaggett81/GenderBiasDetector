@@ -31,8 +31,8 @@ class ProcessText():
         for i in words:
             for j in male_terms:
                 if j in i.lower():
-                    male.append(i)
+                    male.append(" "+i)
             for j in female_terms:
                 if j in i.lower():
-                    female.append(i)
+                    female.append(" "+i)
         return jsonify({"male":male, "female":female})

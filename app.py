@@ -95,14 +95,24 @@ def processLetter():
         
        #Extract user text from the form
     text = request.form.get("letterText")
+    male = request.form.get("male")
+    nonmale = request.form.get("female")
     #Send the text to the processing module 
     result = pc.process_text(text)
     print(result)
+    print(male)
+    print(nonmale)
     #Return results of the processing module in a new page
 
     #Post this to the DB
-
-    to_post = Rec( gender = 0, content = text)
+    if male == '1':
+        gender = 1
+    elif nonmale == '0':
+        gender = 0
+    else:
+        gender = -1
+    
+    to_post = Rec( gender = gender, content = text)
     db.session.add(to_post)
     db.session.commit()
     return render_template('text_analysis.html', results = result.json)
