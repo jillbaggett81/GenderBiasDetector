@@ -115,7 +115,8 @@ def processLetter():
     to_post = Rec( gender = gender, content = text)
     db.session.add(to_post)
     db.session.commit()
-    return render_template('text_analysis.html', results = result.json)
+    #return render_template('text_analysis.html', results = result.json)
+    return render_template('coming_soon.html')
 
 #We can eventually have this represent the results of machine learning for different words.
 #This also could represent different ML models
