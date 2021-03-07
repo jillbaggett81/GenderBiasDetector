@@ -54,19 +54,25 @@
 				return false
 			}
 	        function anon()
-	        {  doc_str = document.getElementById("letterText").value
-			   student_name1 = document.getElementById("studentName1").value
+	        {  doc_str = document.getElementById("letterText").value.toLowerCase()
+			   student_name1 = document.getElementById("studentName1").value.toLowerCase()
 			   arr_values = student_name1.split(", ")
+			   bool_check = true
 			   console.log(arr_values)
 			   console.log(doesContainSubstr(doc_str, arr_values))
 			   if (doesContainSubstr(doc_str, arr_values) == true && doc_str != '') {
-				while (doesContainSubstr(doc_str, arr_values) == true) {
+				while (doesContainSubstr(doc_str, arr_values) == true && bool_check == true) {
 					for (i in arr_values) {
-						if (doc_str.includes(arr_values[i])) {
+
+						if (doc_str.includes(arr_values[i]) && arr_values[i] != '') {
 							new_str = doc_str.replace(arr_values[i], "REDACTED")
 							doc_str = new_str
 							document.getElementById("letterText").value = new_str
 							console.log(doc_str)
+						}
+						if (arr_values[i] == '')
+						{
+							bool_check = false
 						}
 					}
 	            
