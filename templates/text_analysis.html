@@ -25,21 +25,41 @@
   <h1 class="text-header text-center"> 
     Text Analysis 
   </h1> 
+
   <h6 class="text-header text-center"> 
-    View the breakdown of your text below:
+    Your Text
+  </h6> 
+  <div class="text-header text-center" style= "background-color:gainsboro; padding-bottom:10px; padding-top:20px; margin-left:40px; margin-right:40px;">
+    <p>
+    {% for i in highlighted_text %}
+    
+    {% if i in biased_words%}
+    <mark>{{i}}</mark><style>mark {
+      background-color:aquamarine;
+      color: black;
+    }</style>
+    {% else %}
+    {{i}}
+    {% endif %}
+    {% endfor %}
+  </p>
+  
+  </div>
+  <h6 class="text-header text-center"> 
+    View the associations of each highlighted word below:
   </h6> 
   <div class="container"> 
       <table class="table-striped border-success"> 
         <thead> 
           <tr> 
-            <th data-field="male"> 
+            <th data-field="word"> 
               <span class="text-header"> 
-                Male
+                Word
               </span> 
             </th> 
-            <th data-field="female"> 
+            <th data-field="association"> 
               <span class="text-header"> 
-                Female
+                Associations
               </span> 
             </th>  
           </tr> 
@@ -49,7 +69,8 @@
   <style>
     .text-header
     {
-      color:black
+      color:black;
+      padding-top: 20px;
     }
   </style>
   <!-- Include jQuery and other required files for Bootstrap -->
@@ -70,7 +91,8 @@
   
   <!-- Include the file where the JSON data is stored -->
   <script type="text/javascript" > 
-    var mydata = '[{{ results|tojson }}]';
+    var mydata = '{{ results|tojson }}';
+    console.log(mydata)
   </script> 
 
   <script type="text/javascript"> 
@@ -86,5 +108,23 @@
     // Parse the imported data as JSON 
     // and store it 
   </script> 
+<br/></br>
+  <h2 class = "text-header text-center"
+  > Explanation of Associations Found
+</h2>
+<div class="text-header text-left" >
+  {% if "Female Gendered" in unique_associations %}
+	<h6 style="background-color:gainsboro;margin-left:40px;margin-right:40px"><b>Female Gendered</b></h6>
+  <p style="background-color:gainsboro;margin-left:40px;margin-right:40px">
+    Receiving this assciation means that one or more of the words in this written letter was associated with the female gender by our preliminary machine learning predictive gender model. 
+  </p>
+  {% endif %}
+  {% if "Male Gendered" in unique_associations %}
+	<h6 style="background-color:gainsboro;margin-left:40px;margin-right:40px">Male Gendered</h6>
+  <p style="background-color:gainsboro;margin-left:40px;margin-right:40px">
+    Receiving this association means that one or more of the words in this written letter was associated with the female gender by our preliminary machine learning predictive gender model. 
+  </p>
+  {% endif %}
+</div>
 </body> 
 </html>

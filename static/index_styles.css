@@ -76,6 +76,16 @@ p {
 	margin-bottom: 20px;
 }
 
+#highlighted_text {
+	text-align: left;
+	width: 100%;
+	padding: 5px 0px 30% 10px;
+	border-radius: 8px;
+	border: none;
+	background-color: white;
+	margin-bottom: 20px;
+}
+
 /* Formatting all form/input generalizations */
 
 form {
@@ -124,6 +134,22 @@ input#submit {
 }
 
 .h4 {
+	color: white;
+	padding-top: 10px;
+}
+
+.h5 {
+	color: white;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.h6 {
+	color: white;
+	padding-top: 10px;
+}
+
+.h7 {
 	color: white;
 	padding-top: 10px;
 }

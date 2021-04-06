@@ -26,13 +26,46 @@ class ProcessText():
 
         words_no_punc = data.translate(str.maketrans('', '', string.punctuation))
         words = words_no_punc.split()
-        male = []
-        female = []
+        word_list = []
+        biased_words = []
         for i in words:
+            
+            association = ""
+            flag = False
             for j in male_terms:
                 if j in i.lower():
-                    male.append(" "+i)
+                    #association.append("Male-Gendered")
+                    if flag == True:
+                        association += ", Male Gendered"
+                        flag = True
+                    else:
+                        association += "Male Gendered"
+                        flag = True
             for j in female_terms:
                 if j in i.lower():
-                    female.append(" "+i)
-        return jsonify({"male":male, "female":female})
+                    #association.append("Female Gendered")
+                    if flag == True:
+                        association += ", Female Gendered"
+                        flag = True
+                    else:
+                        association += "Female Gendered"
+                        flag = True
+            if flag == True:
+                biased_words.append(i)
+                word_list.append({"word":i, "association":association})
+        total_associations = []
+        unique_associations = []
+        for i in word_list:
+            print(i)
+            if len(i["association"]) <= 16:
+                total_associations.append(i["association"].translate(str.maketrans('', '', string.punctuation)))
+        print(total_associations)
+
+        highlighted_text = []
+        for i in words:
+            if i in biased_words:
+                highlighted_text.append(i)
+            else:
+                highlighted_text.append(i)
+        unique_associations = list(set(total_associations))
+        return jsonify(word_list), unique_associations, highlighted_text, biased_words
