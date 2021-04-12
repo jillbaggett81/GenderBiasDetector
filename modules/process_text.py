@@ -34,8 +34,11 @@ class ProcessText():
         result = self.process_without_ML(data)
         return(result)
     def findSynonyms(self,word):
-        male_terms = ['outstanding','incredible','professional','willing','finest','explanation','direct','normal','horrible','important','sure','courteous','rare','impressed','arrogant','good','easy','kindness','fine','respectful','entire','certain', 'positive','friendly','total','real','great','much','pleased','explain','severe','personal','quick','fantastic','usual','awesome','complete','assertive','confident','aggressive','ambitious','dominan','forceful','independent','daring','outspoken','intellectua','earn','gain','know','insight','think']
-        female_terms = ['unprofessional','smart','primary','sweet','poor','new','lowest','unhelpful','happy','hear','difficult','addressed','addressed','convenient','ok','angel','understanding','previous','lovely','sympathetic','kind','help','affection','small','delightful','presbyterian','amazing','understandable','modern','brilliant','spite','several','nasty','multiple','sensitive','nurtur','agreeab','tactful','interpersonal','warm','car','tactful','husband','wife','kid','babies','brother','child','colleague','family']
+        male_terms = ['outstanding','incredible','professional','willing','finest','explanation','direct','normal','horrible','important','sure','courteous','rare','impressed','arrogant','good','easy','kindness','fine','respectful','entire','certain', 'positive','friendly','total','real','great','much','pleased','explain','severe','personal','quick','fantastic','usual','awesome','complete']
+        female_terms = ['unprofessional','smart','primary','sweet','poor','new','lowest','unhelpful','happy','hear','difficult','addressed','addressed','convenient','ok','angel','understanding','previous','lovely','small','delightful','presbyterian','amazing','understandable','modern','brilliant','spite','several','nasty','multiple','sensitive','nurtur','agreeab','interpersonal']
+        agentic = ['assertive', 'confident', 'aggressive','ambitious', 'dominant', 'forceful', 'independent', 'daring', 'outspoken','intellectual', 'earn', 'gain','do', 'know', 'insight','think']
+        communal = ['affectionate', 'helpful', 'kind', 'sympathetic','sensitive', 'nurturing', 'agreeable', 'tactful', 'interpersonal', 'warm', 'caring','tactful']
+        sociocomm = ['husband', 'wife', 'kids', 'babies', 'brothers', 'children','colleagues', 'dad', 'family', 'they', 'him', 'her']
         synonyms = []
         print("In find synonyms")
         for syn in wordnet.synsets(word):
@@ -55,16 +58,24 @@ class ProcessText():
                 return_string += tentative_set[k] + ", "
             else:
                 return_string += tentative_set[k]
+        if return_string == '':
+            return_string += "No recommended word alternatives found"
         return return_string
     def process_without_ML(self,data):
-        male_terms = ['outstanding','incredible','professional','willing','finest','explanation','direct','normal','horrible','important','sure','courteous','rare','impressed','arrogant','good','easy','kindness','fine','respectful','entire','certain', 'positive','friendly','total','real','great','much','pleased','explain','severe','personal','quick','fantastic','usual','awesome','complete','assertive','confident','aggressive','ambitious','dominan','forceful','independent','daring','outspoken','intellectua','earn','gain','know','insight','think']
-        female_terms = ['unprofessional','smart','primary','sweet','poor','new','lowest','unhelpful','happy','hear','difficult','addressed','addressed','convenient','ok','angel','understanding','previous','lovely','sympathetic','kind','help','affection','small','delightful','presbyterian','amazing','understandable','modern','brilliant','spite','several','nasty','multiple','sensitive','nurtur','agreeab','tactful','interpersonal','warm','car','tactful','husband','wife','kid','babies','brother','child','colleague','family']
-
+        words_to_display = data.split(" ")
+        male_terms = ['outstanding','incredible','professional','willing','finest','explanation','direct','normal','horrible','important','sure','courteous','rare','impressed','arrogant','good','easy','kindness','fine','respectful','entire','certain', 'positive','friendly','total','real','great','much','pleased','explain','severe','personal','quick','fantastic','usual','awesome','complete']
+        female_terms = ['unprofessional','smart','primary','sweet','poor','new','lowest','unhelpful','happy','hear','difficult','addressed','addressed','convenient','ok','angel','understanding','previous','lovely','small','delightful','presbyterian','amazing','understandable','modern','brilliant','spite','several','nasty','multiple','sensitive','nurtur','agreeab','interpersonal']
+        agentic = ['assertive', 'confident', 'aggressive','ambitious', 'dominant', 'forceful', 'independent', 'daring', 'outspoken','intellectual', 'earn', 'gain','do', 'know', 'insight','think']
+        communal = ['affectionate', 'helpful', 'kind', 'sympathetic','sensitive', 'nurturing', 'agreeable', 'tactful', 'interpersonal', 'warm', 'caring','tactful']
+        sociocomm = ['husband', 'wife', 'kids', 'babies', 'brothers', 'children','colleagues', 'dad', 'family']
+        synonyms = []
         words_no_punc = data.translate(str.maketrans('', '', string.punctuation))
         words = words_no_punc.split()
         word_list = []
         biased_words = []
         for i in words:
+            if i in biased_words:
+                continue
             self.findSynonyms(i)
             association = ""
             synonym_list = ""
@@ -78,6 +89,38 @@ class ProcessText():
                     else:
                         association += "Male Gendered"
                         flag = True
+            for j in agentic:
+                if j in i.lower():
+                    #association.append("Male-Gendered")
+                    if flag == True:
+                        association += ", Agentic"
+                        flag = True
+                    else:
+                        association += "Agentic"
+                        flag = True
+            for j in communal:
+                if j in i.lower():
+                    #association.append("Male-Gendered")
+                    if flag == True:
+                        synonym_list += str(self.findSynonyms(i))
+                        association += ", Communal"
+                        flag = True
+                    else:
+                        synonym_list += str(self.findSynonyms(i))
+                        association += "Communal"
+                        flag = True
+            for j in sociocomm:
+                if j in i.lower():
+                    #association.append("Male-Gendered")
+                    if flag == True:
+                        synonym_list += str(self.findSynonyms(i))
+                        association += ", Socio-Communal"
+                        flag = True
+                    else:
+                        synonym_list += str(self.findSynonyms(i))
+                        association += "Socio-Communal"
+                        flag = True
+                                   
             for j in female_terms:
                 if j in i.lower():
                     #association.append("Female Gendered")
@@ -92,7 +135,7 @@ class ProcessText():
             if flag == True:
                 biased_words.append(i)
                 if synonym_list == "":
-                    synonym_list += "No recommended word alternatives found"
+                    synonym_list += ""
                 word_list.append({"word":i, "association":association, "synonyms":synonym_list})
         total_associations = []
         unique_associations = []
@@ -103,7 +146,7 @@ class ProcessText():
         print(total_associations)
 
         highlighted_text = []
-        for i in words:
+        for i in words_to_display:
             if i in biased_words:
                 highlighted_text.append(i)
             else:
