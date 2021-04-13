@@ -1,0 +1,42 @@
+header {
+  padding-bottom: 20px;
+  background-color: #23395B;;
+}
+
+body > header nav {
+  display: block;
+  text-align: right;
+  width: 100%;
+  height: 38px;
+  padding: 10px 0px 0px 50px;
+
+}
+
+body > header > nav ul li {
+  display: inline;
+  padding-right: 25px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.3em;
+  color: white;
+}
+
+
+body > header > nav ul li a {
+  color: white;
+  text-decoration: none;
+  letter-spacing: 0.11em;
+}
+
+body > header > nav ul li a:visited {
+  color: white;
+}
+
+
+body > header > nav ul li a:hover {
+  color:  #406E8E;
+  text-decoration: none;
+}
+
+body > header > nav ul li a:active {
+  color:  #406E8E;
+}

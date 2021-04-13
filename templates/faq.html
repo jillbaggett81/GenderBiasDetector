@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../static/index_styles.css">
+<link rel="stylesheet" type="text/css" href="../static/faq_styles.css">
+<link rel="stylesheet" type="text/css" href="../static/nav_styles.css">
+
+<head>
+  <title> FAQ</title>
+</head>
+<header>
+	<nav> 
+		<ul>
+		  <li><a href="index.html">Home</a></li>
+		  <li><a href="about_us.html">About Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="#">References</a></li>
+		</ul> 
+	</nav>
+</header>
+
+<div class="header jumbotron text-center">
+	<h1>Frequently Asked Questions</h1>
+</div>
+<body>
+<div class="quotes">
+
+	<div class="row">
+		<div class="col left">
+			<h3>Is my data private?</h3>
+			<p>One of the main issues we have faced in pursuing this project is that of privacy. With sensitive data, like recommendation letters, we wanted to make sure our users feel safe sharing and trusting is with their data. For that purpose, we created a built-in anonymizer function, which searches for proper nouns given by the user and redacts them all to be “REDACTED.” The pre-anonymized version of the data is not stored anywhere (not even we can see it) and the anonymized data is kept completely private. We have also modified our anonymizer function from a previous version such that the user can preview what the anonymized data looks like in case they forgot to take out any confidential information prior to submitting.
+			</p>
+			<br>
+
+			<h3>What is the purpose of this project?</h3>
+			<p>Letters of recommendation can be critical for candidates attempting to attend universities for varying degrees, or moving into a new career position. However, numerous studies have detected significant textual differences between letters of recommendation written for different genders, predominantly when male faculty writes for females, compared to when they write for other males. These letters can be critical for understanding the personality and congruence between the candidate and the position, and corroborate the achievements of the candidate. With such consistent statistical differences in these letters, especially in the science and technology field, there is a greater risk for lower acceptance rates of candidates based on gender, and potentially other factors such as race and ethnic backgrounds due to these biases. 
+			</p>
+			<br>
+
+			<h3>What existing relevant work is there on the subject?</h3>
+			<p>There is quite a bit of existing research on this subject matter that we used to shape our research and decide how we wanted to go about pursuing this project. The most relevant existing work for this project is this <a href="https://tomforth.co.uk/genderbias/"><strong>Gender Bias Calculator</strong></a>. <br>For a full list of our references, please see this page.
+			</p>
+			<br>
+
+
+			<h3>Why is this project novel?</h3>
+			<p>Current bias detectors for these letters only exist in the web form of a text analyzer that separates female gendered and male gendered words in the letters, but does not provide any potential word substitutions for the author nor analyze the letter content further. Therefore, we propose a novel solution in which we will employ machine learning algorithms to detect bias, extrapolate on other indicators, and recommend solutions to the author in the form of a web application.
+			</p>
+			<br>
+
+
+			<h3>Who is the intended user base for this project?</h3>
+			<p> The intended user base for this application would be faculty members or applicants who wish to review their letters of recommendation in order to identify and replace detected bias with more professional language. <br>
+			We believe that creating this website would allow recommenders inside and outside of academia to search their letters for potential bias indicators and correct them before submission. These indicators can be subtle, but the tone they convey can have a significant impact on the candidate; providing automated feedback and substitutions for these bias indicators would result in a more gender-neutral tone, ideally leveling the playing field for diverse candidates applying to these positions. This would also give the recommender insight on how to recognize bias in their own language, which they may have not considered before. This would provide recommenders an opportunity to witness the potential bias indicators they may have included and note them as such. It could affect a significant number of candidates as well, since many professors create a “template” and tweak it slightly for each applicant. 
+			</p>
+			<br>
+		</div>
+		<div class="col right">
+			
+			<h3>Why is this project important?</h3>
+			<p>Since bias is a rising issue in technology, we thought that building technology specifically to counter bias could prove to be invaluable. Recommendation letters are only one application of how this software could be used. There are several similar datasets we could test, such as LinkedIn referrals, obituaries, and biographical articles. As the paradigm continues to shift toward equality in the workplace, developing a mechanism to check writing for bias before releasing it could preclude a lot of potential issues before they truly form. Another way we could extend our idea to a wider problem set would be to study racial and ethnic bias alongside gender. 
+			</p>
+			<br>
+
+			<h3>What are the submissions being used for?</h3>
+			<p>In our initial stages of the project, our submissions were being used purely to train our machine learning-based algorithm and gain insights on the most frequently used gendered terms. However, the end product of the project is to have a working and running gender bias detector which takes in anonymized letters of recommendation as input and returns an insights-based set of recommendations on how to improve the letter and eliminate any potential for biased language.
+			</p>
+			<br>
+
+			<h3>Why are the options only cis gendered male and non- cis gendered male?</h3>
+			<p>Since it would be very difficult for us to assign gendered words on a spectrum and the purpose of this project is to eliminate gender bias for those experiencing discrimination based on their gender, we have decided to group all non cis-gendered males under one category. This allows us to focus on the problem at hand: expanding positive professional terms statistically used more often for cis-gendered males to all genders!
+			</p>
+			<br>
+
+			<h3>Why did you decide to create this project?</h3>
+			<p>Jillian, Lauren, and Leah are all members of one senior computer science capstone team at Tulane University. This project is the result of their final capstone project for the 2020-2021 school year. Since bias is a rising issue in technology, we thought that building technology specifically to counter bias could prove to be invaluable. Recommendation letters are only one application of how this software could be used. There are several similar datasets we could test, such as LinkedIn referrals, obituaries, and biographical articles. As the paradigm continues to shift toward equality in the workplace, developing a mechanism to check writing for bias before releasing it could preclude a lot of potential issues before they truly form. Another way we could extend our idea to a wider problem set would be to study racial and ethnic bias alongside gender. 
+			</p>
+			<br>
+
+			<h3>Before you had the site up and running to accept letters of recommendation, had you conducted any text-analysis research to begin analyzing data of this sort?</h3>
+			<p>Yes. One of the biggest challenges we had with this project was figuring out how we were planning on beginning our data analysis since data collection would be such a large feat. We decided to move forward with web scraping the entirety of a doctor-patient reviewing site called HealthGrades. <br>
+			Being able to scrape the HealthGrades data was a big step in this project because it showed us that we do have quite a bit of widely available, easily accessible data which we can use to train our algorithm while we were still working on how to get our hands on a large series of recommendation letters. Since data collection has been our biggest concern with feasibility from the start, this is a great starting point for building up our algorithm. While we have had some roadblocks in generalizing our scraping techniques to catch both the gender of the doctor and all of their reviews, we have altered it in order to accommodate the setup of any doctor’s page on HealthGrades. 
+			</p>
+			<br>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>
