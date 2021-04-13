@@ -35,8 +35,8 @@ class ProcessText():
         return(result)
     def findSynonyms(self,word):
         male_terms = ['outstanding','incredible','professional','willing','finest','explanation','direct','normal','horrible','important','sure','courteous','rare','impressed','arrogant','good','easy','kindness','fine','respectful','entire','certain', 'positive','friendly','total','real','great','much','pleased','explain','severe','personal','quick','fantastic','usual','awesome','complete']
-        female_terms = ['unprofessional','smart','primary','sweet','poor','new','lowest','unhelpful','happy','hear','difficult','addressed','addressed','convenient','ok','angel','understanding','previous','lovely','small','delightful','presbyterian','amazing','understandable','modern','brilliant','spite','several','nasty','multiple','sensitive','nurtur','agreeab','interpersonal']
-        agentic = ['assertive', 'confident', 'aggressive','ambitious', 'dominant', 'forceful', 'independent', 'daring', 'outspoken','intellectual', 'earn', 'gain','do', 'know', 'insight','think']
+        female_terms = ['unprofessional','smart','primary','sweet','poor','new','lowest','unhelpful','happy','hear','difficult','addressed','addressed','convenient','angel','understanding','previous','lovely','small','delightful','presbyterian','amazing','understandable','modern','brilliant','spite','several','nasty','multiple','sensitive','nurtur','agreeab','interpersonal']
+        agentic = ['assertive', 'confident', 'aggressive','ambitious', 'dominant', 'forceful', 'independent', 'daring', 'outspoken','intellectual', 'earn', 'gain', 'know', 'insight','think']
         communal = ['affectionate', 'helpful', 'kind', 'sympathetic','sensitive', 'nurturing', 'agreeable', 'tactful', 'interpersonal', 'warm', 'caring','tactful']
         sociocomm = ['husband', 'wife', 'kids', 'babies', 'brothers', 'children','colleagues', 'dad', 'family', 'they', 'him', 'her']
         synonyms = []
@@ -64,9 +64,9 @@ class ProcessText():
     def process_without_ML(self,data):
         words_to_display = data.split(" ")
         male_terms = ['outstanding','incredible','professional','willing','finest','explanation','direct','normal','horrible','important','sure','courteous','rare','impressed','arrogant','good','easy','kindness','fine','respectful','entire','certain', 'positive','friendly','total','real','great','much','pleased','explain','severe','personal','quick','fantastic','usual','awesome','complete']
-        female_terms = ['unprofessional','smart','primary','sweet','poor','new','lowest','unhelpful','happy','hear','difficult','addressed','addressed','convenient','ok','angel','understanding','previous','lovely','small','delightful','presbyterian','amazing','understandable','modern','brilliant','spite','several','nasty','multiple','sensitive','nurtur','agreeab','interpersonal']
-        agentic = ['assertive', 'confident', 'aggressive','ambitious', 'dominant', 'forceful', 'independent', 'daring', 'outspoken','intellectual', 'earn', 'gain','do', 'know', 'insight','think']
-        communal = ['affectionate', 'helpful', 'kind', 'sympathetic','sensitive', 'nurturing', 'agreeable', 'tactful', 'interpersonal', 'warm', 'caring','tactful']
+        female_terms = ['unprofessional','smart','primary','sweet','poor','new','lowest','unhelpful','happy','hear','difficult','addressed','addressed','convenient','angel','understanding','previous','lovely','small','delightful','presbyterian','amazing','understandable','modern','brilliant','spite','spiteful','several','nasty','multiple','sensitive','nurturing','nurture','agreeable','interpersonal']
+        agentic = ['assertive', 'confident', 'aggressive','ambitious', 'dominant', 'forceful', 'independent', 'daring', 'outspoken','intellectual', 'earn', 'gain', 'know', 'insight','think']
+        communal = ['affectionate', 'helpful', 'kind', 'sympathetic','sensitive', 'nurturing', 'agreeable', 'tactful', 'interpersonal', 'warm', 'caring','care','careful','cared','tactful']
         sociocomm = ['husband', 'wife', 'kids', 'babies', 'brothers', 'children','colleagues', 'dad', 'family']
         synonyms = []
         words_no_punc = data.translate(str.maketrans('', '', string.punctuation))
@@ -81,7 +81,7 @@ class ProcessText():
             synonym_list = ""
             flag = False
             for j in male_terms:
-                if j in i.lower():
+                if j == i.lower():
                     #association.append("Male-Gendered")
                     if flag == True:
                         association += ", Male Gendered"
@@ -90,7 +90,7 @@ class ProcessText():
                         association += "Male Gendered"
                         flag = True
             for j in agentic:
-                if j in i.lower():
+                if j == i.lower():
                     #association.append("Male-Gendered")
                     if flag == True:
                         association += ", Agentic"
@@ -99,7 +99,7 @@ class ProcessText():
                         association += "Agentic"
                         flag = True
             for j in communal:
-                if j in i.lower():
+                if j == i.lower():
                     #association.append("Male-Gendered")
                     if flag == True:
                         synonym_list += str(self.findSynonyms(i))
@@ -110,7 +110,7 @@ class ProcessText():
                         association += "Communal"
                         flag = True
             for j in sociocomm:
-                if j in i.lower():
+                if j == i.lower():
                     #association.append("Male-Gendered")
                     if flag == True:
                         synonym_list += str(self.findSynonyms(i))
@@ -122,7 +122,7 @@ class ProcessText():
                         flag = True
                                    
             for j in female_terms:
-                if j in i.lower():
+                if j == i.lower():
                     #association.append("Female Gendered")
                     if flag == True:
                         synonym_list += str(self.findSynonyms(i))
