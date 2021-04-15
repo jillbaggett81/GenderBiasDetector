@@ -1,6 +1,8 @@
 <!DOCTYPE html> 
 <html lang="en"> 
 <link rel="stylesheet" type="text/css" href="../static/index_styles.css">
+<link rel="stylesheet" type="text/css" href="../static/results.css">
+<link rel="stylesheet" type="text/css" href="../static/nav_styles.css">
 <head> 
   <meta charset="utf-8"> 
   <meta name="viewport" 
@@ -22,6 +24,18 @@
         href= 
 "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css"> 
 </head> 
+
+<header>
+  <nav> 
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about_us.html">About Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="references.html">References</a></li>
+    </ul> 
+  </nav>
+</header>
+
 <body 	style="background-color: #406E8E;border-radius: 8px;padding-bottom: 400px;"> 
  <div> 
   <h1 class="text-header text-center" style="color:white"> 
@@ -128,39 +142,49 @@
 </h2>
 <div class="text-header text-left" >
   {% if "Female Gendered" in unique_associations %}
-	<h6 style="margin-left:40px;margin-right:40px;color:white"><b>Female Gendered: Unspecified</b></h6>
-  <p style="margin-left:40px;margin-right:40px;color:white">
+  <div class="assoc" id="one">
+	<h6 class="assoc"><b>Female Gendered: Unspecified</b></h6>
+  <p class="assoc">
     This association means that one or more of the words in this text were categorized by our machine learning analysis to have high predictive correspondence with the female gender. While this does not guarantee gender bias, it may be wise to consider more neutral or agentic language to provide the most objective language in this letter.
   </p>
+  </div>
   {% endif %}
   {% if "Male Gendered" in unique_associations %}
-	<h6 style="margin-left:40px;margin-right:40px;color:white"><b>Male Gendered: Unspecified</b></h6>
-  <p style="margin-left:40px;margin-right:40px;color:white">
+  <div class="assoc" id="two">
+	<h6 class="assoc"><b>Male Gendered: Unspecified</b></h6>
+  <p class="assoc">
     This association means that one or more words in this text were identified by our machine learning algorithm to have high predictive correspondence with a male candidate. These words are not inherently biased, as they often view portray professional/academic oriented descriptions of a candidates achievements, however, it may be important to note if a high quantity of these words appears in a letter for a male candidate when compared to another letter for a female candidate.
   </p>
+</div>
   {% endif %}
   {% if "Communal" in unique_associations %}
-	<h6 style="margin-left:40px;margin-right:40px;color:white"><b>Female Gendered: Communal</b></h6>
-  <p style="margin-left:40px;margin-right:40px;color:white">
+  <div class="assoc" id ="three">
+	<h6 class="assoc"><b>Female Gendered: Communal</b></h6>
+  <p class="assoc">
     This association is research based and means that one or more of the words in this text correspond with the female gender. Our source (see below) indicates that "Communal behaviors at work include being concerned with the welfare
     of others (i.e., descriptions of kindness, sympathy, sensitivity, and
     nurturance), helping others, accepting others’ direction, and maintaining relationships." These can erode the perception of professional accomplishments in academia or in the workplace, and we recommend that they be replaced by neutral language.
   </p>
+</div>
   {% endif %}
   {% if "SocioCommunal" in unique_associations %}
-	<h6 style="margin-left:40px;margin-right:40px;color:white"><b>Female Gendered: Socio-Communal</b></h6>
-  <p style="margin-left:40px;margin-right:40px;color:white">
+  <div class="assoc" id="four">
+	<h6 class="assoc"><b>Female Gendered: Socio-Communal</b></h6>
+  <p class="assoc">
     This association is research based and means that one or more of the words in this text correspond with the female gender. Our source (see below) explains that "Psychologically, it reflects how much letter writers referred to
     other people when writing about the applicant" which can diminish the focus of the letter on the achievements of the applicant. It is recommended to remove both these terms, and phrases that might revolve around other subjects that are not the candidate specifically in question for said job or position.
   </p>
+</div>
   {% endif %}
   {% if "Agentic" in unique_associations %}
-	<h6 style="margin-left:40px;margin-right:40px;color:white"><b>Male Gendered: Agentic</b></h6>
-  <p style="margin-left:40px;margin-right:40px;color:white">
+  <div class="assoc" id="five">
+	<h6 class="assoc"><b>Male Gendered: Agentic</b></h6>
+  <p class="assoc">
     This association is research based and means that one or more of the words in this text correspond with the male gender. Our source (see below) indicates that "Agency includes descriptions of aggressiveness,
     assertiveness, independence, and self-confidence. Agentic behaviors at work include
     speaking assertively, influencing others, and initiating tasks." Words that are labeled as agentic can be helpful to candidates when being considered for leadership positions, job openings, and/or upward mobility in an organization. It is highly recommended to use these terms whenever possible.
   </p>
+</div>
   {% endif %}
 </div>
 <div>

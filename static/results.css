@@ -1,0 +1,40 @@
+
+div.assoc {
+	margin: 0px 20px; 
+	padding: 5px 5px; 
+	border-radius: 15px;
+}
+
+h6.assoc {
+	margin: 0px 0px;
+	padding: 5px 20px;
+	color: black;
+	font-size: 1.1em;
+}
+
+p.assoc {
+	margin: 0px 0px;
+	padding: 5px 20px;
+	color: black;
+	font-size: 1.1em;
+}
+
+div#one {
+	background-color: #E5E0E4; 
+}
+
+div#two {
+	background-color: #C3C8CB;
+}
+
+div#three {
+	background-color: #9EB0BA;
+}
+
+div#four {
+	background-color: #839EA9;
+}
+
+div#five {
+	background-color: #6294AF;
+}
