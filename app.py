@@ -2,6 +2,7 @@ import os
 import sys
 from sys import path
 path.append('./modules')
+path.append('./templates')
 from flask import Flask, request, current_app
 from flask.templating import render_template
 import logging
@@ -83,6 +84,19 @@ api.add_resource(PostListResource, '/posts')
 def homepage():
     return render_template('index.html')
 
+@app.route('/index.html')
+def home():
+    return render_template('index.html')
+
+@app.route('/faq.html')
+def faq():
+    return render_template('faq.html')
+
+@app.route('/about_us.html')
+def aboutus():
+    return render_template('about_us.html')
+
+
 @app.route('/process_letter_text', methods=["GET","POST"])
 def processLetter():
     current_app.logger.info(request.form)
@@ -100,7 +114,6 @@ def processLetter():
     #Send the text to the processing module 
     result = pc.process_text(text)
 
-    print(result[0].json)
     #print(male)
     #print(nonmale)
     #Return results of the processing module in a new page
