@@ -40,16 +40,13 @@ class ProcessText():
         communal = ['affectionate', 'helpful', 'kind', 'sympathetic','sensitive', 'nurturing', 'agreeable', 'tactful', 'interpersonal', 'warm', 'caring','tactful']
         sociocomm = ['husband', 'wife', 'kids', 'babies', 'brothers', 'children','colleagues', 'dad', 'family', 'they', 'him', 'her']
         synonyms = []
-        print("In find synonyms")
         for syn in wordnet.synsets(word):
             for lm in syn.lemmas():
                 synonyms.append(lm.name())
         tentative_set = list(set(synonyms))
-        print(tentative_set)
         for j in female_terms:
             if j in tentative_set:
                 tentative_set.remove(j)
-        print(tentative_set)
         return_string = ''
         for k in range(len(tentative_set) -1):
             if '_' in tentative_set[k]:
@@ -81,7 +78,7 @@ class ProcessText():
             synonym_list = ""
             flag = False
             for j in male_terms:
-                if j in i.lower():
+                if j == i.lower():
                     #association.append("Male-Gendered")
                     if flag == True:
                         association += ", Male Gendered"
@@ -90,7 +87,7 @@ class ProcessText():
                         association += "Male Gendered"
                         flag = True
             for j in agentic:
-                if j in i.lower():
+                if j == i.lower():
                     #association.append("Male-Gendered")
                     if flag == True:
                         association += ", Agentic"
@@ -99,7 +96,7 @@ class ProcessText():
                         association += "Agentic"
                         flag = True
             for j in communal:
-                if j in i.lower():
+                if j == i.lower():
                     #association.append("Male-Gendered")
                     if flag == True:
                         synonym_list += str(self.findSynonyms(i))
@@ -110,7 +107,7 @@ class ProcessText():
                         association += "Communal"
                         flag = True
             for j in sociocomm:
-                if j in i.lower():
+                if j == i.lower():
                     #association.append("Male-Gendered")
                     if flag == True:
                         synonym_list += str(self.findSynonyms(i))
@@ -122,7 +119,7 @@ class ProcessText():
                         flag = True
                                    
             for j in female_terms:
-                if j in i.lower():
+                if j == i.lower():
                     #association.append("Female Gendered")
                     if flag == True:
                         synonym_list += str(self.findSynonyms(i))
@@ -140,17 +137,14 @@ class ProcessText():
         total_associations = []
         unique_associations = []
         for i in word_list:
-            print(i)
             if len(i["association"]) <= 16:
                 total_associations.append(i["association"].translate(str.maketrans('', '', string.punctuation)))
-        print(total_associations)
 
         highlighted_text = []
         for i in words_to_display:
-            if i in biased_words:
-                highlighted_text.append(i)
-            else:
-                highlighted_text.append(i)
+            print(i)
+            highlighted_text.append(i)
         unique_associations = list(set(total_associations))
+
 
         return jsonify(word_list), unique_associations, highlighted_text, biased_words
