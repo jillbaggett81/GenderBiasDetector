@@ -71,6 +71,9 @@
   <h6 class="text-header text-center" style="color: white"> 
     View the associations of each highlighted word below:
   </h6> 
+  <p class="text-header text-center" style="color: white"> 
+    Note that Professionally Oriented and Potentially Gender Biased terms were flagged using our machine learning algorithm. These results were consistent with the research papers we had collected. Professionally Oriented refers to words that are predictive of those of gender men, where Potentially Gender Biased words were predictive of genders women, transgender, nonbinary, etc. 
+  </p> 
   <div class="container"> 
       <table class="table-striped border-success" style="background-color:white"> 
         <thead> 
@@ -141,17 +144,17 @@
   > Explanation of Associations Found
 </h2>
 <div class="text-header text-left" >
-  {% if "Female Gendered" in unique_associations %}
+  {% if "Potentially Gender Biased" in unique_associations %}
   <div class="assoc" id="one">
-	<h6 class="assoc"><b>Female Gendered: Unspecified</b></h6>
+	<h6 class="assoc"><b> Potentially Gender Biased </b></h6>
   <p class="assoc">
     This association means that one or more of the words in this text were categorized by our machine learning analysis to have high predictive correspondence with the female gender. While this does not guarantee gender bias, it may be wise to consider more neutral or agentic language to provide the most objective language in this letter.
   </p>
   </div>
   {% endif %}
-  {% if "Male Gendered" in unique_associations %}
+  {% if "Professionally Oriented" in unique_associations %}
   <div class="assoc" id="two">
-	<h6 class="assoc"><b>Male Gendered: Unspecified</b></h6>
+	<h6 class="assoc"><b> Professionally Oriented </b></h6>
   <p class="assoc">
     This association means that one or more words in this text were identified by our machine learning algorithm to have high predictive correspondence with a male candidate. These words are not inherently biased, as they often view portray professional/academic oriented descriptions of a candidates achievements, however, it may be important to note if a high quantity of these words appears in a letter for a male candidate when compared to another letter for a female candidate.
   </p>

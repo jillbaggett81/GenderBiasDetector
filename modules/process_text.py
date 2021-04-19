@@ -34,34 +34,133 @@ class ProcessText():
         result = self.process_without_ML(data)
         return(result)
     def findSynonyms(self,word):
-        male_terms = ['outstanding','incredible','professional','willing','finest','explanation','direct','normal','horrible','important','sure','courteous','rare','impressed','arrogant','good','easy','kindness','fine','respectful','entire','certain', 'positive','friendly','total','real','great','much','pleased','explain','severe','personal','quick','fantastic','usual','awesome','complete']
-        female_terms = ['unprofessional','smart','primary','sweet','poor','new','lowest','unhelpful','happy','hear','difficult','addressed','addressed','convenient','ok','angel','understanding','previous','lovely','small','delightful','presbyterian','amazing','understandable','modern','brilliant','spite','several','nasty','multiple','sensitive','nurtur','agreeab','interpersonal']
         agentic = ['assertive', 'confident', 'aggressive','ambitious', 'dominant', 'forceful', 'independent', 'daring', 'outspoken','intellectual', 'earn', 'gain','do', 'know', 'insight','think']
         communal = ['affectionate', 'helpful', 'kind', 'sympathetic','sensitive', 'nurturing', 'agreeable', 'tactful', 'interpersonal', 'warm', 'caring','tactful']
         sociocomm = ['husband', 'wife', 'kids', 'babies', 'brothers', 'children','colleagues', 'dad', 'family', 'they', 'him', 'her']
-        synonyms = []
-        for syn in wordnet.synsets(word):
-            for lm in syn.lemmas():
-                synonyms.append(lm.name())
-        tentative_set = list(set(synonyms))
-        for j in female_terms:
-            if j in tentative_set:
-                tentative_set.remove(j)
+        synonyms_1 = {
+            'affectionate':['unselfish','devoted','pleasant'],
+            'helpful':['cooperative', 'team-oriented','proactive', 'responsible'],
+            'kind':['pleasant','good-natured','considerate','attentive','charitable','beneficent'],
+            'sympathetic':['understanding','intuitive','encouraging','perceptive'],
+            'sensitive':['diplomatic','aware', 'attentive', 'perceptive'],
+            'nurturing':['Consider focusing on more professional oriented content'],
+            'tactful':['considerate','perceptive'],
+            'interpersonal':['civil','team-oriented', 'courteous', 'respectful'],
+            'warm':['affable','cordial', 'respectful', 'courteous'],
+            'caring':['responsible','concerned','attentive', 'courteous', 'respectful'],
+            'agreeable':['amiable','amenable', 'cordial', 'respectful'],
+            'lovely' : ['engaging', 'impressive', 'compelling', 'respectful'],
+            'insightful' : ['intellectual'],
+            'responsive' : ['attentive', 'proactive'],
+            'gal':['woman', 'man', 'person', 'candidate'],
+            'angel': ['woman', 'man', 'person', 'candidate'],
+            'angelic':['engaging', 'impressive', 'compelling', 'respectful'],
+            'difficult': [ 'challenging','demanding', 'arduous', 'laborious', 'strenuous', 'burdensome', 'complex', 'involved', 'strong-willed', 'Consider focusing on positive aspects of the candidate. Words beginning with the prefix "un" have been found to raise doubt about the candidate in question. A study by Wayne State University found that “letters for women include doubt raisers at a statistically significant higher rate that is double the rate for males,” (Trix, Psenka). See source.'],
+            'unprofessional': ['Consider focusing on positive aspects of the candidate. Words beginning with the prefix "un" have been found to raise doubt about the candidate in question. A study by Wayne State University found that “letters for women include doubt raisers at a statistically significant higher rate that is double the rate for males,” (Trix, Psenka). See source.'],
+            'delightful': ['cordial','engaging', 'amenable', 'compelling', 'respectful'],
+            'social': ['cordial', 'engaging', 'present', 'compelling', 'respectful'],
+            'attractive': ['engaging', 'compelling', 'impressive', 'attentive'],
+            'possible': ['feasible', 'viable', 'achievable', 'conceivable'],
+            'younger': ['impressive', 'experienced', 'bright', 'sophisticated', 'respectful'],
+            'high': ['very', 'strong', 'elevated', 'impressive'],
+            'sweet': ['amiable', 'cordial', 'engaging', 'amenable', 'professional', 'respectful'],
+            'nasty' : ['Consider focusing on positive aspects of the candidate. A study by Wayne State University found that “letters for women include doubt raisers at a statistically significant higher rate that is double the rate for males,” (Trix, Psenka). See source.'],
+            'modern':['knowledgeable', 'contemporary', 'innovative', 'original', 'unique'],
+            'tight':['unyielding','compacted','rigid','stiff'],
+            'supportive':['encouraging','empowered','team-oriented'],
+            'mental':['intellectual','cognitive','conceptual','theoretical'],
+            'unprepared':['Consider focusing on positive aspects of the candidate. Words beginning with the prefix "un" have been found to raise doubt about the candidate in question. A study by Wayne State University found that “letters for women include doubt raisers at a statistically significant higher rate that is double the rate for males,” (Trix, Psenka). See source.'],
+            'new':['contemporary','innovative', 'beginner','novice'],
+            'fellow':['Consider focusing on only the subject of the paper'],
+            'unhelpful':['Consider focusing on positive aspects of the candidate. Words beginning with the prefix "un" have been found to raise doubt about the candidate in question. A study by Wayne State University found that “letters for women include doubt raisers at a statistically significant higher rate that is double the rate for males,” (Trix, Psenka). See source.'],
+            'poor' : ['Consider focusing on positive aspects of the candidate. A study by Wayne State University found that “letters for women include doubt raisers at a statistically significant higher rate that is double the rate for males,” (Trix, Psenka). See source.'],
+            'grateful' : ['appreciative', 'respectful'],
+            'honest':['straightforward','clear','genuine', 'respectful'],
+            'unclear':['Consider focusing on positive aspects of the candidate. Words beginning with the prefix "un" have been found to raise doubt about the candidate in question. A study by Wayne State University found that “letters for women include doubt raisers at a statistically significant higher rate that is double the rate for males,” (Trix, Psenka). See source.'],
+            'presbyterian':['Consider focusing on more professional oriented content.'],
+            'extra':['exceptionally','extremely','supplemental','additional'],
+            'various':['many','numerous','plethora of', 'myriad']
+        }
+        female_terms = ['affectionate','helpful','kind','sympathetic','sensitive','nurturing','tactful','interpersonal',
+            'warm',
+            'caring',
+            'agreeable',
+            'lovely',
+            'insightful',
+            'responsive',
+            'gal',
+            'angel',
+            'angelic',
+            'difficult',
+            'unprofessional',
+            'delightful',
+            'social',
+            'attractive',
+            'possible',
+            'younger',
+            'high',
+            'sweet',
+            'nasty',
+            'modern',
+            'tight',
+            'supportive',
+            'mental',
+            'unprepared',
+            'new',
+            'fellow',
+            'unhelpful',
+            'poor',
+            'grateful',
+            'honest',
+            'unclear',
+            'presbyterian',
+            'extra',
+            'various']
         return_string = ''
-        for k in range(len(tentative_set) -1):
-            if '_' in tentative_set[k]:
-               tentative_set[k] = tentative_set[k].translate(str.maketrans(' ', ' ', '_'))
-            if k < len(tentative_set) -2:
-                return_string += tentative_set[k] + ", "
-            else:
-                return_string += tentative_set[k]
+        
+        if word in female_terms or word in communal:
+            for j in synonyms_1[word]:
+                return_string += j + ", "
+            #Taking off the last comma
+            return_string = return_string[0:-2]
         if return_string == '':
             return_string += "No recommended word alternatives found"
         return return_string
     def process_without_ML(self,data):
         words_to_display = data.split(" ")
-        male_terms = ['outstanding','incredible','professional','willing','finest','explanation','direct','normal','horrible','important','sure','courteous','rare','impressed','arrogant','good','easy','kindness','fine','respectful','entire','certain', 'positive','friendly','total','real','great','much','pleased','explain','severe','personal','quick','fantastic','usual','awesome','complete']
-        female_terms = ['unprofessional','smart','primary','sweet','poor','new','lowest','unhelpful','happy','hear','difficult','addressed','addressed','convenient','ok','angel','understanding','previous','lovely','small','delightful','presbyterian','amazing','understandable','modern','brilliant','spite','several','nasty','multiple','sensitive','nurtur','agreeab','interpersonal']
+        male_terms = ['much','arrogant','kindness','suffered','rudest','outstanding','gentle','certain','finest','willing','stuck','eager','talked','uncomfortable','truthful','busy','easy','confident','tried','independent','positive','lower','assessment','last']
+        female_terms = [
+            'lovely',
+            'insightful',
+            'responsive',
+            'gal',
+            'angel',
+            'angelic',
+            'difficult',
+            'unprofessional',
+            'delightful',
+            'social',
+            'attractive',
+            'possible',
+            'younger',
+            'high',
+            'sweet',
+            'nasty',
+            'modern',
+            'tight',
+            'supportive',
+            'mental',
+            'unprepared',
+            'new',
+            'fellow',
+            'unhelpful',
+            'poor',
+            'grateful',
+            'honest',
+            'unclear',
+            'presbyterian',
+            'extra',
+            'various']
         agentic = ['assertive', 'confident', 'aggressive','ambitious', 'dominant', 'forceful', 'independent', 'daring', 'outspoken','intellectual', 'earn', 'gain','do', 'know', 'insight','think']
         communal = ['affectionate', 'helpful', 'kind', 'sympathetic','sensitive', 'nurturing', 'agreeable', 'tactful', 'interpersonal', 'warm', 'caring','tactful']
         sociocomm = ['husband', 'wife', 'kids', 'babies', 'brothers', 'children','colleagues', 'dad', 'family']
@@ -81,10 +180,10 @@ class ProcessText():
                 if j == i.lower():
                     #association.append("Male-Gendered")
                     if flag == True:
-                        association += ", Male Gendered"
+                        association += ", Professionally Oriented"
                         flag = True
                     else:
-                        association += "Male Gendered"
+                        association += "Professionally Oriented"
                         flag = True
             for j in agentic:
                 if j == i.lower():
@@ -123,11 +222,11 @@ class ProcessText():
                     #association.append("Female Gendered")
                     if flag == True:
                         synonym_list += str(self.findSynonyms(i))
-                        association += ", Female Gendered"
+                        association += ", Potentially Gender Biased"
                         flag = True
                     else:
                         synonym_list += str(self.findSynonyms(i))
-                        association += "Female Gendered"
+                        association += "Potentially Gender Biased"
                         flag = True
             if flag == True:
                 biased_words.append(i)
@@ -137,14 +236,19 @@ class ProcessText():
         total_associations = []
         unique_associations = []
         for i in word_list:
-            if len(i["association"]) <= 16:
-                total_associations.append(i["association"].translate(str.maketrans('', '', string.punctuation)))
+            #if len(i["association"]) <= 16:
+            total_associations.append(i["association"].translate(str.maketrans('', '', string.punctuation)))
 
         highlighted_text = []
+        word_bias_display = []
         for i in words_to_display:
             print(i)
             highlighted_text.append(i)
+            for j in biased_words:
+                if j in i:
+                    word_bias_display.append(i)
         unique_associations = list(set(total_associations))
 
 
-        return jsonify(word_list), unique_associations, highlighted_text, biased_words
+        return jsonify(word_list), unique_associations, highlighted_text, word_bias_display
+
