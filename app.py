@@ -20,12 +20,15 @@ pc = ProcessText()
 at = anonText()
 
 app = Flask(__name__, template_folder='templates')
+
+#Configure flask DB attributes
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db' # new
 db = SQLAlchemy(app)
 ma = Marshmallow(app) 
 api = Api(app)
 logging.basicConfig(level=logging.DEBUG)
 
+#Database outline for each rec 
 class Rec(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     #1 if male, 0 if female
@@ -34,6 +37,7 @@ class Rec(db.Model):
 
     def __repr__(self):
         return '<Review %s>' % self.content
+#Schema for the rec reviews
 class RecSchema(ma.Schema):
     class Meta:
         fields = ("id","gender","content")
@@ -41,7 +45,7 @@ class RecSchema(ma.Schema):
 #Create Schema for our DB model
 rec_schema = RecSchema()
 recs_schema = RecSchema(many=True)
-
+#Methods to add the rec letter to the DB
 class PostListResource(Resource):
     def get(self):
         posts = Rec.query.all()
@@ -56,15 +60,13 @@ class PostListResource(Resource):
         return rec_schema.dump(new_post)
     def patch(self, post_id):
         post = Rec.query.get_or_404(post_id)
-
         if 'gender' in request.json:
             post.title = request.json['gender']
         if 'content' in request.json:
             post.content = request.json['content']
-
         db.session.commit()
         return rec_schema.dump(post)
-
+    #Method to delete a review, if needed
     def delete(self, post_id):
         post = Rec.query.get_or_404(post_id)
         db.session.delete(post)
@@ -78,8 +80,12 @@ class PostResource(Resource):
 
 api.add_resource(PostResource, '/posts/<int:post_id>')
 api.add_resource(PostListResource, '/posts')
+
+
 #Home page for Flask
 #Run this application using "python3 app.py" then go to localhost:5000 on Chrome
+
+#Routes for each page
 @app.route('/')
 def homepage():
     return render_template('index.html')
@@ -96,10 +102,12 @@ def faq():
 def aboutus():
     return render_template('about_us.html')
 
+@app.route('/references.html')
+def refs():
+    return render_template('references.html')
 
 @app.route('/process_letter_text', methods=["GET","POST"])
 def processLetter():
-    current_app.logger.info(request.form)
     if "anonymize" in request.form.get("action"):
             text = request.form.get("letterText")
             student_name = request.form.get("studentName")
@@ -107,28 +115,20 @@ def processLetter():
             current_app.logger.info(result)
             return result
         
-       #Extract user text from the form
+    #Extract user text from the form
     text = request.form.get("letterText")
-    gender_form = request.form.get("gender_form")
-    #nonmale = request.form.get("female")
+
+    #Extract gender from the form
+    gender = request.form.get("gender_form")
+
     #Send the text to the processing module 
     result = pc.process_text(text)
 
-    #print(male)
-    #print(nonmale)
-    #Return results of the processing module in a new page
-
     #Post this to the DB
-    if gender_form == '1':
-        gender = 1
-    elif gender_form == '0':
-        gender = 0
-    else:
-        gender = -1
-    
-    to_post = Rec( gender = gender, content = text)
+    to_post = Rec(gender = gender, content = text)
     db.session.add(to_post)
     db.session.commit()
+    print(result[0].json)
     return render_template('text_analysis.html', results = result[0].json, unique_associations = result[1], highlighted_text = result[2], biased_words = result[3])
     #return render_template('coming_soon.html')
 
