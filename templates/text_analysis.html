@@ -1,5 +1,6 @@
 <!DOCTYPE html> 
 <html lang="en"> 
+<!-- Links to all Stylesheets -->
 <link rel="stylesheet" type="text/css" href="../static/index_styles.css">
 <link rel="stylesheet" type="text/css" href="../static/results.css">
 <link rel="stylesheet" type="text/css" href="../static/nav_styles.css">
@@ -25,6 +26,8 @@
 "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css"> 
 </head> 
 
+
+<!-- Consistent Nav Bar Across All Pages -->
 <header>
   <nav> 
     <ul>
@@ -36,21 +39,17 @@
   </nav>
 </header>
 
-<body 	style="background-color: #406E8E;border-radius: 8px;padding-bottom: 400px;"> 
+<!-- Page Intro and Quote -->
+<body style="background-color: #406E8E;border-radius: 8px;padding-bottom: 400px;"> 
  <div> 
-  <h1 class="text-header text-center" style="color:white"> 
-    Text Explanation and Analysis 
-  </h1> 
-  <h2 class="text-header text-center" style="color:white"> 
-    Why Does This Matter?
-  </h2> 
+  <h1 class="text-header text-center" style="color:white"> Text Explanation and Analysis </h1> 
+  <h2 class="text-header text-center" style="color:white"> Why Does This Matter? </h2> 
   <p class="text-header text-center" style="margin-left:40px; margin-right:40px;color:white"><i>"Women were
     described as more communal and less agentic than men and that communal characteristics
-    have a negative relationship with hiring decisions in academia that are based on letters of recommendation. Such results are particularly important because letters of recommendation continue to
-    be heavily weighted and commonly used selection tools" </i><a href="http://www.academic.umn.edu/wfc/documents/rec%20letter%20study%202009.pdf" >Source</a> </p>
-  <h6 class="text-header text-center" style="color:white"> 
-    Your Text
-  </h6> 
+    have a negative relationship with hiring decisions in academia that are based on letters of recommendation. Such results are particularly important because letters of recommendation continue to be heavily weighted and commonly used selection tools" </i><a href="http://www.academic.umn.edu/wfc/documents/rec%20letter%20study%202009.pdf" >Source</a> </p>
+  <h6 class="text-header text-center" style="color:white"> Your Text </h6> 
+
+<!-- Paste Submission with Highlighted Text -->
 </div>
   <div class="text-header text-center" style= "background-color:gainsboro; padding-bottom:10px; padding-top:20px;">
     <p style="color:black"> 
@@ -66,14 +65,15 @@
     {% endif %}
     {% endfor %}
   </p>
-  
   </div>
-  <h6 class="text-header text-center" style="color: white"> 
-    View the associations of each highlighted word below:
-  </h6> 
+
+<!-- Disclaimer Explaining Format of Output -->
+  <h6 class="text-header text-center" style="color: white"> View the associations of each highlighted word below: </h6> 
   <p class="text-header text-center" style="color: white"> 
     Note that Professionally Oriented and Potentially Gender Biased terms were flagged using our machine learning algorithm. These results were consistent with the research papers we had collected. Professionally Oriented refers to words that are predictive of those of gender men, where Potentially Gender Biased words were predictive of genders women, transgender, nonbinary, etc. 
   </p> 
+
+<!-- Display Association/Substitution Table -->
   <div class="container"> 
       <table class="table-striped border-success" style="background-color:white"> 
         <thead> 
@@ -105,20 +105,12 @@
     }
   </style>
   <!-- Include jQuery and other required files for Bootstrap -->
-  <script src= 
-"https://code.jquery.com/jquery-3.3.1.min.js"> 
-  </script> 
-  <script src= 
-"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> 
-  </script> 
-  <script src= 
-"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> 
-  </script> 
+  <script src= "https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+  <script src= "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
+  <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> </script> 
   
   <!-- Include the JavaScript file for Bootstrap table -->
-  <script src= 
-"https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"> 
-  </script> 
+  <script src= "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script> 
   
   <!-- Include the file where the JSON data is stored -->
   <script type="text/javascript" > 
@@ -140,6 +132,8 @@
     // and store it 
   </script> 
 <br/></br>
+
+<!-- Display Association Cards As Appeared -->
   <h2 class = "text-header text-center" style="color: white"
   > Explanation of Associations Found
 </h2>

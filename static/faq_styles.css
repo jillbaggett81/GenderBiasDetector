@@ -1,11 +1,10 @@
 
-.column h1 {
-
-}
 
 body {
 	height: 100%;
 }
+
+/* Styling of Questions and Answers */
 
 h3 {
 	color: white;
@@ -14,7 +13,6 @@ h3 {
 p {
 	padding: 15px;
 	margin: 0px;
-	/*background-color: rgba(0,0,0,.2);*/
 	background-color: rgba(239, 247, 250,.6);
 	border-radius: 18px;
 	color: #23395B;
@@ -26,6 +24,8 @@ p {
 .header {
 	padding: 60px;
 }
+
+/* Styles to divide the screen into two columns */
 
 .col {
 	min-width: 400px;

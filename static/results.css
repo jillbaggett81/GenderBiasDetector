@@ -1,3 +1,4 @@
+/* Specifying Card Sizes/Formatting for Associations */
 
 div.assoc {
 	margin: 0px 20px; 
@@ -18,6 +19,8 @@ p.assoc {
 	color: black;
 	font-size: 1.1em;
 }
+
+/* Setting Unique Colors for Each Associaton */
 
 div#one {
 	background-color: #E5E0E4; 

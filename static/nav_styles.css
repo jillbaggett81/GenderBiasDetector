@@ -1,3 +1,5 @@
+/* Styling the Navigation Bar */
+
 header {
   padding-bottom: 20px;
   background-color: #23395B;;
@@ -26,6 +28,8 @@ body > header > nav ul li a {
   text-decoration: none;
   letter-spacing: 0.11em;
 }
+
+/* Styles for Hovering, Visiting, and Clicking between Pages */
 
 body > header > nav ul li a:visited {
   color: white;

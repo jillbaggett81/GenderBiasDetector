@@ -1,9 +1,9 @@
 /*
+Color Scheme:;
 #DEE8D5
 #E9FAE3
-
-
 */
+
 
 /* HTML and Body Styles (structure)*/
 html, body {
@@ -24,7 +24,7 @@ body {
 }
 
 
-/* format media options */
+/* Format Media Options */
 @media (min-width: 768px) {
     body .container {
         max-width: 70%;
@@ -87,7 +87,7 @@ p {
 	margin-bottom: 20px;
 }
 
-/* Formatting all form/input generalizations */
+/* Formatting All Form/Input Generalizations */
 
 form {
 	margin-top: 10px;
@@ -102,25 +102,11 @@ input#studentName {
 	padding: 2px 0px 2px 5px;
 }
 
+/* Formatting of Buttons */
 .button {
 	margin: 10px 0px 10px 0px;
 }
 
-/*
-input#submit {
-	background-color: #eff7fa;
-	border-radius: 10px;
-	border-style: none;
-	margin: 10px 0px 10px 0px;
-}
-
-.btn .btn-sm {
-	background-color: #eff7fa;
-	border-radius: 10px;
-	border-style: none;
-	margin: 10px 0px 10px 0px;
-}
-*/
 
 .btn{
 	background-color: #eff7fa;
@@ -128,6 +114,8 @@ input#submit {
 	border-style: none;
 	margin: 0px 2px 10px 0px;
 }
+
+/* Styles for Different Headings Based on Importance */
 
 .h3 {
 	color: white;
